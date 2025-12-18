@@ -53,13 +53,15 @@ public class Customer {
         this.balance = balance;
     }
 
+
+
     @Override
     public String toString() {
-        return "Customer:" +id+"\n"+
-                "balance=" + balance +"\n"+
-                " pin=" + pin +"\n"+
-                " Accno=" + Accno +"\n"+
-                " name='" + name + "\n" +
-                " id=" + id+"\n" ;
+        return "     " +
+                 id +
+                "        | " + name  +
+                "         | " + Accno +
+                "          | " + pin +
+                "       | " + balance;
     }
 }

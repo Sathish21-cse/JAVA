@@ -8,6 +8,10 @@ public class AtmHandler {
         this.sc=sc;
     }
 
+    public void setATM_BAL(Double ATM_BAL) {
+        this.ATM_BAL = ATM_BAL;
+    }
+
     public Double getATM_BAL() {
         return ATM_BAL;
     }
@@ -28,10 +32,29 @@ public class AtmHandler {
         {
             addwallet(n);
             System.out.println("Added Successfully !!!");
-            System.out.println(getATM_BAL());
+            denominations(n);
+            System.out.println("CHECK BALANCE :(Y/N)");
+            char op=sc.next().charAt(0);
+            sc.nextLine();
+            if(op=='Y'||op=='y')
+            {
+                System.out.println("---------------------------");
+                System.out.println("ATM BALANCE :"+getATM_BAL());
+                System.out.println("---------------------------");
+            }
         }
         else
             System.out.println("Invalid amount");
 
     }
+
+    public int denominations(double n)
+    {
+        System.out.println("100   -> "+n*300+" ("+n*30000+")");
+        System.out.println("500   -> "+n*100 +" ("+n*50000+")" );
+        System.out.println("1000 -> "+n*20+" ("+n*20000+")");
+        return 0;
+    }
+
+
 }

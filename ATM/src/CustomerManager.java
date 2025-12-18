@@ -13,16 +13,27 @@ public class CustomerManager {
 
 
 
-   public void CustomerFunction()
+   public boolean CustomerFunction()
    {
        System.out.println("Enter Acc no");
        int Acc=sc.nextInt();
        System.out.println("Enter the pin");
        int pin=sc.nextInt();
-       auth(Acc,pin);
+       if(auth(Acc,pin))
+       {
+           System.out.println("--------------------------");
+           System.out.println("Welcome "+user.getName());
+           System.out.println("--------------------------");
+             return true;
+       }
+       else
+        {
+            System.out.println("Try Again");
+             return false;
+        }
    }
 
-   public void auth(int acc,int pin)
+   public boolean auth(int acc,int pin)
    {
 
        ArrayList<Customer> arr=ch.getArr();
@@ -32,35 +43,68 @@ public class CustomerManager {
            if(i.getPin()==pin && i.getAccno()==acc)
            {
                user=i;
-               System.out.println("Welcome "+i.getName());
-               System.out.println("--------------------------");
-               CustomerOptions(user);
+               return true;
            }
-           else {
-               System.out.println("Try Again");
-               CustomerFunction();
-           }
-       }
 
+       }
+       return false;
    }
 
-   public void CustomerOptions(Customer user)
+
+   public void CustomerOptions()
    {
-       while(true)
-       {
-           System.out.println("1.Check Balance");
-           System.out.println("2.WithDraw Money");
-           System.out.println("3.Transfer Money");
-           System.out.println("4.Mini Statement");
-           System.out.println("Enter a Option");
-           int o=sc.nextInt();
-           switch (o)
-           {
-               case 1->ch.getBalance(user);
-               
+       if(CustomerFunction()) {
+           while (true) {
+               System.out.println("1. Check Balance");
+               System.out.println("2. WithDraw Money");
+               System.out.println("3. Transfer Money");
+               System.out.println("4. Mini Statement");
+               System.out.println("5. Logout");
+               System.out.println("Enter a Option");
+               int o = sc.nextInt();
+               switch (o) {
+                   case 1 -> {
+                       getBalance();
+                       return ;
+                   }
+                   case 2-> {
+                       ch.withdraw(user);
+                       return;
+                   }
+                   case 3->{
+                       ch.TransferMoney(user);
+                       return;
+                   }
+                   case 4->{
+                       ch.getMinStatement(user);
+                       return;
+                   }
+                   case 5-> {
+                       return ;
+                   }
+               }
            }
        }
+
+
    }
+
+
+    public void getBalance()
+    {
+
+            System.out.println("--------------------------");
+            System.out.println("Your Balance: " + user.getBalance());
+            System.out.println("--------------------------");
+
+    }
+
+//    public void withdraw()
+//    {
+//
+//    }
+
+
 
    
 }

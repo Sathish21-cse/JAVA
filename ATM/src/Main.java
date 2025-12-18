@@ -1,22 +1,24 @@
 import java.util.*;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
-        CustomerHandler c=new CustomerHandler(sc);
-        AtmManager at=new AtmManager(sc,c);
+        AtmHandler ah=new AtmHandler(sc);
+        CustomerHandler c=new CustomerHandler(sc,ah);
         CustomerManager cm=new CustomerManager(sc,c);
 
 
         while (true)
         {
-            System.out.println("1.ATM Manager");
-            System.out.println("2.Customer");
+            System.out.println("1.Load Cash");
+            System.out.println("2.Show Customers");
+            System.out.println("3.Show Operations");
             int op=sc.nextInt();
             sc.nextLine();
             switch (op){
-                case 1->at.AtmFunction();
-                case 2->cm.CustomerFunction();
+                case 1->ah.addmoney();
+                case 2->c.getuser();
+                case 3->cm.CustomerOptions();
                 default -> {
                     System.out.println("Enter a Valid Options");
                 }
